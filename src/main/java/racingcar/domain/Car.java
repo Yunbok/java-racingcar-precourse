@@ -12,6 +12,13 @@ public class Car {
 
     }
 
+    public String getName() {
+        return name;
+    }
+    public int getWinCount() {
+        return winCount;
+    }
+
     public String move(final int randomNumber) {
         stopAndGo(randomNumber);
         StringBuilder moveStr = new StringBuilder(name + ": ");
