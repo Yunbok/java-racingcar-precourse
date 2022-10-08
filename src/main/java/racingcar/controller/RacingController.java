@@ -18,25 +18,38 @@ public class RacingController {
 
     public void start() {
         Map<Integer, Race> allRace = new HashMap<>();
-        printNameInputMessage();
-        String[] names = nameInput();
-        printRoundInputMessage();
-        int round = roundInput();
+        String[] names = carNameInput();
+        int round = raceRoundInput();
         Cars cars = new Cars(Arrays.asList(names));
+
+        playGame(allRace, round, cars);
+
+        printMessage("최종 우승자 : " + allRace.get(round).roundWinnersName());
+    }
+
+    private void playGame(Map<Integer, Race> allRace, int round, Cars cars) {
         for (int i = 0; i < round; i++) {
             Race race = new Race(cars, i);
             race.start();
             allRace.put(round, race);
         }
-
-        printMessage("최종 우승자 : " + allRace.get(round).roundWinnersName());
     }
 
-    public String[] nameInput() {
+    private int raceRoundInput() {
+        printRoundInputMessage();
+        return roundInput();
+    }
+
+    private String[] carNameInput() {
+        printNameInputMessage();
+        return nameInput();
+    }
+
+    private String[] nameInput() {
         return nameValidation(Console.readLine());
     }
 
-    public Integer roundInput() {
+    private Integer roundInput() {
         return roundValidation(Console.readLine());
     }
 
