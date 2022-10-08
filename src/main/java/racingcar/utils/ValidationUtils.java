@@ -2,6 +2,7 @@ package racingcar.utils;
 
 import static racingcar.constant.ErrorMessages.*;
 import static racingcar.constant.GameConfig.NAME_LENGTH;
+import static racingcar.constant.GameConfig.NAME_SEPARATOR;
 
 public class ValidationUtils {
 
@@ -14,7 +15,15 @@ public class ValidationUtils {
 
     public static Integer roundValidation(String round) {
         roundNullCheck(round);
-        return integerRound(round);
+        Integer roundNumber = integerRound(round);
+        checkGreaterThanZero(roundNumber);
+        return roundNumber;
+    }
+
+    private static void checkGreaterThanZero(Integer number) {
+        if (number <= 0) {
+            throw new IllegalArgumentException(ROUND_LESS_THEN_ZERO);
+        }
     }
 
     private static Integer integerRound(String round) {
@@ -50,7 +59,7 @@ public class ValidationUtils {
     }
 
     private static String[] nameSplit(String names) {
-        return names.split(",");
+        return names.split(NAME_SEPARATOR);
     }
 
 }
