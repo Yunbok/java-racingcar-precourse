@@ -1,7 +1,6 @@
 package racingcar.utils;
 
-import static racingcar.constant.ErrorMessages.NAME_LENGTH_EXCEEDED;
-import static racingcar.constant.ErrorMessages.NAME_NOT_INPUT;
+import static racingcar.constant.ErrorMessages.*;
 import static racingcar.constant.GameConfig.NAME_LENGTH;
 
 public class ValidationUtils {
@@ -11,6 +10,25 @@ public class ValidationUtils {
         String[] splitName = nameSplit(names);
         namesCheck(splitName);
         return splitName;
+    }
+
+    public static Integer roundValidation(String round) {
+        roundNullCheck(round);
+        return integerRound(round);
+    }
+
+    private static Integer integerRound(String round) {
+        try {
+            return Integer.valueOf(round);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ROUND_NOT_NUMBER);
+        }
+    }
+
+    private static void roundNullCheck(String round) {
+        if (round.isEmpty()) {
+            throw new IllegalArgumentException(ROUND_NOT_INPUT);
+        }
     }
 
     private static void nameNullCheck(String name) {
