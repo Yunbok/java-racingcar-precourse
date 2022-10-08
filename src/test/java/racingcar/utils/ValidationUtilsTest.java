@@ -13,7 +13,7 @@ class ValidationUtilsTest {
     @ParameterizedTest
     @ValueSource(strings = {"asdsdf",""})
     @DisplayName("잘못된 이름 입력 테스트")
-    void nameValidationExceptionTest(String namesInput) {
+    void nameValidationExceptionTest(final String namesInput) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> nameValidation(namesInput));
     }
@@ -21,7 +21,7 @@ class ValidationUtilsTest {
     @ParameterizedTest
     @ValueSource(strings = {"0", "", "한글"})
     @DisplayName("잘못된 횟수 입력 테스트")
-    void roundValidationExceptionTest(String roundInput) {
+    void roundValidationExceptionTest(final String roundInput) {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> roundValidation(roundInput));
     }

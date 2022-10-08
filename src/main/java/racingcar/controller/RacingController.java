@@ -1,6 +1,10 @@
 package racingcar.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import racingcar.domain.Cars;
+import racingcar.domain.Race;
+
+import java.util.Arrays;
 
 import static racingcar.utils.ValidationUtils.nameValidation;
 import static racingcar.utils.ValidationUtils.roundValidation;
@@ -11,9 +15,17 @@ public class RacingController {
 
     public void start() {
         printNameInputMessage();
-        nameInput();
+        String[] names = nameInput();
         printRoundInputMessage();
-        roundInput();
+        int round = roundInput();
+
+        Cars cars = new Cars(Arrays.asList(names));
+        for (int i = 0; i < round; i++) {
+            Race race = new Race(cars, round);
+            race.start();
+            System.out.println();
+        }
+
     }
 
     public String[] nameInput() {
