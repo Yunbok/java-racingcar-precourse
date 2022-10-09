@@ -32,17 +32,28 @@ public class RacingController {
             Race race = new Race(cars, i);
             race.start();
             allRace.put(round, race);
+            System.out.println();
         }
     }
 
     private int raceRoundInput() {
-        printRoundInputMessage();
-        return roundInput();
+        try {
+            printRoundInputMessage();
+            return roundInput();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return raceRoundInput();
+        }
     }
 
     private String[] carNameInput() {
-        printNameInputMessage();
-        return nameInput();
+        try {
+            printNameInputMessage();
+            return nameInput();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return carNameInput();
+        }
     }
 
     private String[] nameInput() {
