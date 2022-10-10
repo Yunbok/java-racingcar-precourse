@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import java.util.Objects;
+
 import static racingcar.constant.GameConfig.CAR_MOVE_STRING;
 
 public class Car {
@@ -21,7 +23,7 @@ public class Car {
 
     public String move(final int randomNumber) {
         stopAndGo(randomNumber);
-        StringBuilder moveStr = new StringBuilder(name + ": ");
+        StringBuilder moveStr = new StringBuilder(name + " : ");
         for (int i = 0; i < winCount; i++) {
             moveStr.append(CAR_MOVE_STRING);
         }
@@ -32,5 +34,18 @@ public class Car {
         if (randomNumber >= 4) {
             winCount++;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return winCount == car.winCount && name.equals(car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, winCount);
     }
 }

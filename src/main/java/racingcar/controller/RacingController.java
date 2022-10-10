@@ -32,7 +32,6 @@ public class RacingController {
             Race race = new Race(cars, i);
             race.start();
             allRace.put(round, race);
-            System.out.println();
         }
     }
 

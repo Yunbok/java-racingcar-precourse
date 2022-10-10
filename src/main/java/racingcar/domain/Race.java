@@ -28,6 +28,7 @@ public class Race {
         List<String> winnersName = new ArrayList<>();
         for (Car car : winners) {
             winnersName.add(car.getName());
+            System.out.println(car);
         }
         return String.join(NAME_SEPARATOR, winnersName);
     }
